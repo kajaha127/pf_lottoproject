@@ -1,0 +1,327 @@
+@charset "utf-8";
+
+@font-face {
+	font-family: 'KOTRAHOPE';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+#wrap {
+	width: 1100px;
+  height: 700px;
+	margin: 0 auto;
+
+
+   /* border: 1px solid #000; */
+}
+
+header {
+	position: relative;
+	width: 1100px;
+	height: 70px;
+	line-height: 70px;
+	font-family: 'KOTRAHOPE';
+	letter-spacing: 5px;
+
+	 /* border: 1px solid #000;  */
+}
+
+header > h1 {
+	text-indent: 60px;
+}
+
+header > p {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	right: +60px;
+	bottom: -1px;
+	width: 120px;
+	height: 50px;
+	color: #fff;
+	text-decoration: none;
+	background-color: skyblue;
+	border-radius: 5px;
+}
+
+header > p > button {
+	background: none;
+	border: none;
+	outline: none;
+	color: #fff;
+	font-size: 24px;
+	font-family: 'KOTRAHOPE';
+	text-decoration: none;
+	letter-spacing: 5px;
+	cursor: pointer;
+}
+
+section{
+	position: relative;
+}
+
+section > .moving {
+	position: relative;
+  width: 1100px;
+	height: 70px;
+	 /* border: 1px solid #000;  */
+}
+
+@keyframes mybox {
+	from {
+		width: 0;
+	}
+
+	to {
+		width: 940px;
+	}
+}
+
+section > .moving > .box {
+  position: absolute;
+  top: -15px;
+  left: 40px;
+	width: 0;
+	height: 10px;
+	margin: 30px;
+	background-color: red;
+	border: 1px solid red;
+	border-radius: 5px;
+	z-index: 100;
+
+}
+
+section > .moving > .box.on{
+	animation-name: mybox;
+	animation-duration: 30s;
+	animation-timing-function: ease-in-out;
+}
+
+section > .moving > .box1 {
+	position: absolute;
+	top:-15px;
+  left: 40px;
+	width: 940px;
+	height: 10px;
+	margin: 30px;
+	border: 1px solid red;
+	border-radius: 5px;
+
+	z-index: -1;
+}
+
+@keyframes myimg {
+	from {
+		transform: translate(0, 0);
+	}
+
+	to {
+		transform: translate(900px, 0);
+	}
+}
+
+section > .moving > img {
+	display: block;
+	position: absolute;
+	top: -15px;
+	left: 40px;
+	height: 70px;
+	z-index: 200;
+
+}
+
+section > .moving > img.on{
+	animation-name: myimg;
+	animation-duration: 30s;
+	animation-timing-function: ease-in-out;
+}
+
+section > .image {
+	display: flex;
+	flex-flow: row nowrap;
+	position: relative;
+	width: 1000px;
+	height: 400px;
+	margin: -30px auto;
+
+
+	/* border: 1px solid #000; */
+}
+
+section > .image > p {
+	overflow: hidden;
+	width: 500px;
+
+}
+
+section > .image > p:first-of-type {
+	margin-right: 20px;
+}
+
+section > .image > p:last-of-type > img {
+	display: block;
+	z-index: -1;
+}
+
+section>.text{
+	display: block;
+
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+
+	color: #fff;
+	font-weight: 800;
+
+	height: 100px;
+
+}
+
+section>.text>.success{
+	visibility: hidden;
+	display: block;
+	position: absolute;
+	width: 1000px;
+	left:50%;
+	top: 50%;
+	margin: -0px 0 0 -450px;
+		font-size:220px;
+z-index: 200;
+	/* border: 1px solid #000; */
+
+}
+
+section>.text>.fail{
+	visibility: hidden;
+	display: block;
+	position: absolute;
+	width: 1000px;
+	left:50%;
+	top: 50%;
+	margin: 50px 0 0 -450px;
+
+	font-size: 180px;
+	
+z-index: 200;
+
+}
+
+section > .circle {
+	position: relative;
+ 
+}
+
+section > .circle > p > button {
+	background: none;
+	border: none;
+	outline: none;
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	z-index: 100;
+}
+
+section > .circle > p > button:nth-of-type(1) {
+	top: -180px;
+	right: 245px;
+}
+
+section > .circle > p > button:nth-of-type(2) {
+	top: -220px;
+	right: 360px;
+}
+
+section > .circle > p > button:nth-of-type(3) {
+	top: -110px;
+	right: 400px;
+}
+
+section > .circle > p > button:nth-of-type(4) {
+	top: -360px;
+	right: 340px;
+}
+
+section > .circle > p > button:nth-of-type(5) {
+	top: -370px;
+	right: 470px;
+}
+
+section > .circle > p > button:nth-of-type(6) {
+	top: -290px;
+	right: 470px;
+}
+
+footer {
+	display: flex;
+  justify-content: center;
+}
+
+
+
+.ball {
+	 display: inline-block;
+	width: 100px;
+	height: 100px;
+  margin-left: 20px;
+	margin-right: 10px;
+	color: #000;
+	font-weight: 600;
+	font-size: 30px;
+	line-height: 100px;
+	text-align: center;
+	z-index: 300;
+	background-color: gray;
+	border-radius: 50%; 
+
+  
+}
+
+
+
+.ball:nth-of-type(1) {
+	visibility: hidden;
+	background-image: url(./images/ball1.png);
+	background-position: -400px -400px;
+ background-size: 180%;
+}
+ 
+.ball:nth-of-type(2) {
+	visibility: hidden;
+	background-image: url(./images/ball2.png);
+	background-position: -400px -400px;
+ background-size: 180%;
+}
+
+.ball:nth-of-type(3) {
+	visibility: hidden;
+	background-image: url(./images/ball3.png);
+	background-position: -400px -400px;
+ background-size: 180%;
+}
+
+.ball:nth-of-type(4) {
+	visibility: hidden;
+	background-image: url(./images/ball4.png);
+	background-position: -400px -400px;
+ background-size: 180%;
+}
+
+.ball:nth-of-type(5) {
+	visibility: hidden;
+	background-image: url(./images/ball5.png);
+	background-position: -400px -400px;
+ background-size: 180%;
+}
+
+.ball:nth-of-type(6) {
+	visibility: hidden;
+	background-image: url(./images/ball6.png);
+	background-position: -400px -400px;
+ background-size: 180%;
+} 

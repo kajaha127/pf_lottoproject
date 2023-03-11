@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./style.css">
+  <title>로또번호추출</title>
+
+</head>
+
+<body>
+  <div id="wrap">
+
+    <header>
+      <h1>틀린그림 찾기</h1>
+      <p><button type="button">Start</button></p>
+    </header>
+
+    <section>
+      <div class="moving">
+        <p class="box"> </p>
+        <p class="box1"> </p>
+        <img src="./images/폭탄.webp" alt="폭탄" class="bomb">
+      </div>
+
+      <div class="image">
+        <p>
+          <img src="./images/틀린그림찾기1.png" alt="틀린그림찾기1">
+        </p>
+
+        <p>
+          <img src="./images/틀린그림찾기2.png" alt="틀린그림찾기2">
+        </p>
+      </div>
+
+      <div class="text">
+        <p class="success">You win!</p>
+        <p class="fail">Game over</p>
+      </div>
+
+      <div class="circle">
+        <p>
+          <button type="button" class="circle1"></button>
+          <button type="button" class="circle2"></button>
+          <button type="button" class="circle3"></button>
+          <button type="button" class="circle4"></button>
+          <button type="button" class="circle5"></button>
+          <button type="button" class="circle6"></button>
+
+        </p>
+      </div>
+
+    </section>
+
+    <footer>
+      <p class="result"></p>
+    </footer>
+
+  </div>
+
+
+
+  <script>
+    //start 버튼 
+    const $btnStart = document.querySelector('header>p>button');
+
+    $btnStart.addEventListener('click', function () {
+
+      const $box = document.querySelector('section>.moving>.box');
+      const $bomb = document.querySelector('section>.moving>.bomb');
+
+
+      {
+        //초기화
+        const $btncir = document.querySelectorAll("section>.circle>p>button");
+        $btncir.forEach(function ($cir) {
+          $cir.style.border = 'none';
+        });
+
+        document.getElementById('wrap').setAttribute('style', '');
+        document.querySelector('section>.text>.fail').setAttribute('style', '')
+        document.querySelector('section>.text>.success').setAttribute('style', '')
+      }
+
+      //이전에 실행되는 타임애니메이션바를 화면에서 처음으로 돌아가게 하고 싶다면...
+      setTimeout(function () {
+        $box.classList.toggle('on');
+        $bomb.classList.toggle('on');
+      }, 50);
+
+      const $result = document.querySelector('footer>.result');
+
+      //추출한 로또볼을 저장할 변수 - 로또용지
+      const lottoPaper = [];
+      //박스에 45개의 로또볼 준비
+      const ballBox = [];
+      for (let i = 1; i <= 45; i++) {
+        ballBox.push(i);
+      }
+      //여섯번 로또번호를 추출
+      for (let i = 0; i < 6; i++) {
+        //랜덤으로 45개의 로또볼 중 한개에 해당하는 배열의 인덱스를 추출 => 0~44
+        const idx = Math.floor(Math.random() * ballBox.length);
+        //이번에 추출한 로또볼
+        const ball = ballBox[idx];
+        //로또용지에 추출한 로또볼 번호를 추가
+        lottoPaper.push(ball);
+        //볼박스에서 이번에 추출한 로또볼을 제거 => 번호중복 방지
+        ballBox.splice(idx, 1);
+      }
+      //이전에 출력된 번호를 화면에서 제거하고 싶다면....
+      while ($result.childElementCount > 0) {
+        $result.removeChild($result.firstElementChild);
+      }
+
+
+      // 로또용지에 기록된 번호 6개를 웹페이지에 출력
+      for (let i = 0; i < lottoPaper.length; i++) {
+        //자바스크립트 문법을 이용해서 태그를 생성후 결합하는 방법
+        const $span = document.createElement('span');//1. span 요소생성
+        $span.setAttribute('class', 'ball');//2. 클래스속성 추가
+        const ballNumber = document.createTextNode(lottoPaper[i]);//3. 텍스트노드 생성
+        $span.appendChild(ballNumber);//4. 텍스트노드를 span요소에 추가
+        $result.appendChild($span);//5. 완성한 span요소를 $result DOM에 추가
+      }
+
+      const $btncir1 = document.querySelector("section>.circle>p>button:nth-of-type(1)");
+
+      const arrChkBall = [];
+
+      $btncir1.addEventListener('click', function () {
+        const $ball = document.querySelector(".ball:nth-of-type(1)")
+        $btncir1.style.border = '3px solid #f00';
+        $ball.style.visibility = 'visible';
+        arrChkBall.push(lottoPaper[0]);
+      });
+      const $btncir2 = document.querySelector("section>.circle>p>button:nth-of-type(2)");
+      $btncir2.addEventListener('click', function () {
+        const $ball = document.querySelector('.ball:nth-of-type(2)');
+        $btncir2.style.border = '3px solid #f00';
+        $ball.style.visibility = 'visible';
+        arrChkBall.push(lottoPaper[1]);
+      });
+      const $btncir3 = document.querySelector("section>.circle>p>button:nth-of-type(3)");
+      $btncir3.addEventListener('click', function () {
+        const $ball = document.querySelector('.ball:nth-of-type(3)');
+        $btncir3.style.border = '3px solid #f00';
+        $ball.style.visibility = 'visible';
+        arrChkBall.push(lottoPaper[2]);
+      });
+      const $btncir4 = document.querySelector("section>.circle>p>button:nth-of-type(4)");
+      $btncir4.addEventListener('click', function () {
+        const $ball = document.querySelector('.ball:nth-of-type(4)');
+        $btncir4.style.border = '3px solid #f00';
+        $ball.style.visibility = 'visible';
+        arrChkBall.push(lottoPaper[3]);
+      });
+      const $btncir5 = document.querySelector("section>.circle>p>button:nth-of-type(5)");
+      $btncir5.addEventListener('click', function () {
+        const $ball = document.querySelector('.ball:nth-of-type(5)');
+        $btncir5.style.border = '3px solid #f00';
+        $ball.style.visibility = 'visible';
+        arrChkBall.push(lottoPaper[4]);
+      });
+      const $btncir6 = document.querySelector("section>.circle>p>button:nth-of-type(6)");
+      $btncir6.addEventListener('click', function () {
+        const $ball = document.querySelector('.ball:nth-of-type(6)');
+        $btncir6.style.border = '3px solid #f00';
+        $ball.style.visibility = 'visible';
+        arrChkBall.push(lottoPaper[5]);
+      });
+
+
+      setTimeout(function () {
+
+        if (arrChkBall.length < 6) {//시간안에 다 못찾았을 경우
+          document.getElementById('wrap').setAttribute('style', 'background-color:rgba(128,128,128,0.7');
+          document.querySelector('section>.text>.fail').setAttribute('style', 'visibility:visible')
+        } else {//시간안에 다  찾았을 경우
+          if (arrChkBall.length === 6) {
+            document.querySelector('section>.text>.success').setAttribute('style', 'visibility:visible')
+          };
+        };
+
+
+      }, 30000);
+
+
+    });
+
+  </script>
+
+</body>
+
+</html>
